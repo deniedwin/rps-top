@@ -24,8 +24,37 @@ function getHumanChoice(){
 function playRound(humanChoice, computerChoice){
     let lwHumanChoice = humanChoice.toLowerCase();
     let lwComputerChoice = computerChoice.toLowerCase();
+    
     console.log(lwHumanChoice);
     console.log(lwComputerChoice);
+
+    if(lwComputerChoice === "rock" && lwHumanChoice === "paper"){
+        userScore++;
+        console.log(`you win ${lwHumanChoice} beats ${lwComputerChoice}`);
+    }
+    else if (lwComputerChoice === "rock" && lwHumanChoice === "scissor"){
+        console.log(`you lose ${lwComputerChoice} beats ${lwHumanChoice}`);
+        computerScore++;
+    }
+    else if (lwComputerChoice === "paper" && lwHumanChoice === "rock"){
+        console.log(`you lose ${lwComputerChoice} beats ${lwHumanChoice}`);
+        computerScore++;
+    }
+    else if (lwComputerChoice === "paper" && lwHumanChoice === "scissor"){
+        console.log(`you win ${lwHumanChoice} beats ${lwComputerChoice}`);
+        userScore++;
+    }
+    else if (lwComputerChoice === "scissor" && lwHumanChoice === "rock"){
+        console.log(`you win ${lwHumanChoice} beats ${lwComputerChoice}`);
+        userScore++;
+    }
+    else if (lwComputerChoice === "scissor" && lwHumanChoice === "paper"){
+        console.log(`you lose ${lwComputerChoice} beats ${lwHumanChoice}`);
+        computerScore++;
+    }
+    else{
+        console.log("tie play again");
+    }
 }
 
 const humanSelection = getHumanChoice();
