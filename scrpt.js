@@ -1,5 +1,3 @@
-// console.log("hello rock paper scissor");
-
 let userScore = 0;
 let computerScore = 0;
 
@@ -22,9 +20,10 @@ function getHumanChoice(){
 }
 
 function playRound(humanChoice, computerChoice){
+
     let lwHumanChoice = humanChoice.toLowerCase();
     let lwComputerChoice = computerChoice.toLowerCase();
-    
+
     console.log(lwHumanChoice);
     console.log(lwComputerChoice);
 
@@ -57,7 +56,13 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+function playGame(){
+    let maxRounds = 5;
+    for(let i = 0; i < maxRounds; i++){
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+    console.log(`user score = ${userScore}, computer score = ${computerScore}`);
+    return 0;
+}
