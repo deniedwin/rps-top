@@ -57,12 +57,7 @@ function playRound(humanChoice, computerChoice){
 }
 
 function playGame(){
-    let maxRounds = 5;
-    for(let i = 0; i < maxRounds; i++){
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+
     console.log(`user score = ${userScore}, computer score = ${computerScore}`);
     return 0;
 }
