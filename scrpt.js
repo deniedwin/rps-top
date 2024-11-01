@@ -1,3 +1,6 @@
+let userScore = 0;
+let computerScore = 0;
+
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
@@ -7,14 +10,21 @@ buttons.forEach((button) => {
 });
 
 const container = document.querySelector("#container");
-const result = document.createElement("div");
-result.classList.add("result");
-result.textContent = "some text";
-container.appendChild(result);
 
+const userResult = document.createElement("div");
+userResult.classList.add("usrResult");
+userResult.textContent = `user score: ${userScore}`;
+container.appendChild(userResult);
 
-let userScore = 0;
-let computerScore = 0;
+const compResult = document.createElement("div");
+compResult.classList.add("pcResult");
+compResult.textContent = `comp score: ${computerScore}`;
+container.appendChild(compResult);
+
+const displayMessage = document.createElement("div");
+displayMessage.classList.add("dspMessage");
+//append here
+container.appendChild(displayMessage);
 
 function getComputerChoice(){
     let rps = Math.floor(Math.random() * 3);
@@ -29,49 +39,46 @@ function getComputerChoice(){
     }
 }
 
-function getHumanChoice(){
-    let userInput = prompt("user choose: rock, paper or scissor");
-    return userInput;
-}
-
 function playRound(humanChoice, computerChoice){
 
     let lwHumanChoice = humanChoice.toLowerCase();
     let lwComputerChoice = computerChoice.toLowerCase();
 
-    console.log(lwHumanChoice);
-    console.log(lwComputerChoice);
-
     if(lwComputerChoice === "rock" && lwHumanChoice === "paper"){
         userScore++;
-        console.log(`you win ${lwHumanChoice} beats ${lwComputerChoice}`);
+        displayMessage.textContent = `you win ${lwHumanChoice} beats ${lwComputerChoice}`;
     }
     else if (lwComputerChoice === "rock" && lwHumanChoice === "scissor"){
-        console.log(`you lose ${lwComputerChoice} beats ${lwHumanChoice}`);
         computerScore++;
+        displayMessage.textContent = `you lose ${lwComputerChoice} beats ${lwHumanChoice}`;
     }
     else if (lwComputerChoice === "paper" && lwHumanChoice === "rock"){
-        console.log(`you lose ${lwComputerChoice} beats ${lwHumanChoice}`);
         computerScore++;
+        displayMessage.textContent = `you lose ${lwComputerChoice} beats ${lwHumanChoice}`;
     }
     else if (lwComputerChoice === "paper" && lwHumanChoice === "scissor"){
-        console.log(`you win ${lwHumanChoice} beats ${lwComputerChoice}`);
         userScore++;
+        displayMessage.textContent = `you win ${lwHumanChoice} beats ${lwComputerChoice}`;
     }
     else if (lwComputerChoice === "scissor" && lwHumanChoice === "rock"){
-        console.log(`you win ${lwHumanChoice} beats ${lwComputerChoice}`);
         userScore++;
+        displayMessage.textContent = `you win ${lwHumanChoice} beats ${lwComputerChoice}`;
     }
     else if (lwComputerChoice === "scissor" && lwHumanChoice === "paper"){
-        console.log(`you lose ${lwComputerChoice} beats ${lwHumanChoice}`);
         computerScore++;
+        displayMessage.textContent = `you lose ${lwComputerChoice} beats ${lwHumanChoice}`;
     }
     else{
-        console.log("tie play again");
+        displayMessage.textContent = "it is a tie play again";
     }
-}
+    //show userScore
+    userResult.textContent = `user score: ${userScore}`;
+    compResult.textContent = `comp score: ${computerScore}`;
 
-function playGame(){
-    console.log(`user score = ${userScore}, computer score = ${computerScore}`);
-    return 0;
+    //setTimeout here delays the alert message showing the score on screen first then alert
+    if (userScore === 5) {
+        setTimeout(() => alert("User is the winner!"), 10);
+    } else if (computerScore === 5) {
+        setTimeout(() => alert("PC is the winner!"), 10);
+    }
 }
